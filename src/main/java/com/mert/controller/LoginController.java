@@ -5,9 +5,11 @@ package com.mert.controller;
  */
 import javax.validation.Valid;
 
+import com.mert.model.Amigo;
 import com.mert.model.Role;
 import com.mert.model.Task;
 import com.mert.model.UserTask;
+import com.mert.service.AmigoService;
 import com.mert.service.RoleService;
 import com.mert.service.TaskService;
 import com.mert.service.UserTaskService;
@@ -37,6 +39,9 @@ public class LoginController {
 
 	@Autowired
 	private TaskService taskService;
+	
+	@Autowired
+	private AmigoService amigoService;
 
 	@Autowired
 	private UserTaskService userTaskService;
@@ -98,6 +103,11 @@ public class LoginController {
 	@RequestMapping(value="/home", method = RequestMethod.GET)
 	public ModelAndView home(){
 		ModelAndView modelAndView = new ModelAndView();
+		
+		List<Amigo> amigos = new ArrayList<>();
+		amigos = amigoService.findAll();
+		
+		
 		Role role = new Role();
 		Role role2 = new Role();
 		role = roleService.findRole("ADMIN");
@@ -110,8 +120,12 @@ public class LoginController {
 		tasks = taskService.findAll();
 		int taskCount = tasks.size();
 		int adminCount = users.size();
+		int amigosCount = amigos.size();
+		
 		int userCount = users2.size();
 		modelAndView.addObject("adminCount", adminCount);//Authentication for NavBar
+		modelAndView.addObject("amigosCount", amigosCount);//Authentication for NavBar
+		
 		modelAndView.addObject("userCount", userCount);//Authentication for NavBar
 		modelAndView.addObject("taskCount", taskCount);//Authentication for NavBar
 		//-----------------------------------------
