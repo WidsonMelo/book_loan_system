@@ -115,7 +115,7 @@ public class UserPageController {
 			modelAndView.addObject("control", getUser().getRole().getRole());
 			modelAndView.addObject("rule", new User());
 			modelAndView.addObject("process", "SUCCESS");
-			modelAndView.addObject("pw_success", "Well done! You successfully change your password.");
+			modelAndView.addObject("pw_success", "Senha alterada com sucesso!");
 			modelAndView.setViewName("user_profile");
 		}
 		else {
@@ -125,7 +125,7 @@ public class UserPageController {
 			modelAndView.addObject("auth", getUser());
 			modelAndView.addObject("control", getUser().getRole().getRole());
 			modelAndView.addObject("process", "ERROR");
-			modelAndView.addObject("pw_error", "Error : Check your old password!");
+			modelAndView.addObject("pw_error", "Algo deu errado: Verifique sua senha antiga");
 			modelAndView.addObject("rule", new User());
 			modelAndView.setViewName("user_profile");
 			

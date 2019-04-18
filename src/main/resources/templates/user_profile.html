@@ -205,7 +205,7 @@
 			<div th:if="${mode == 'MODE_INF'}">
 				<section class="content-header">
 					<h1>
-						User Profile
+						Perfil do Usuário
 					</h1>
 				</section>
 				<!-- Main content -->
@@ -234,9 +234,9 @@
 								</div>
 								<div class="box-footer no-padding">
 									<ul class="nav nav-stacked">
-										<li><a th:href="@{/myprofile/edit(id=${user.id})}">Edit profile information <span class="pull-right glyphicon glyphicon-pencil  badge bg-blue"> Edit</span></a></li>
-										<li><a th:href="@{/myprofile/mytasks(id=${user.id})}">Show my tasks <span class="pull-right glyphicon glyphicon-list-alt badge bg-blue"> Tasks</span></a></li>
-										<li><a th:href="@{/myprofile/change_password(id=${user.id})}">Change Password<span class="pull-right glyphicon glyphicon-cog badge bg-blue"> Passowrd</span></a></li>
+										<li><a th:href="@{/myprofile/edit(id=${user.id})}">Editar informações do perfil <span class="pull-right glyphicon glyphicon-pencil  badge bg-blue"> Editar</span></a></li>
+										<li><a th:href="@{/myprofile/mytasks(id=${user.id})}">Mostrar meus livros <span class="pull-right glyphicon glyphicon-list-alt badge bg-blue"> Livros</span></a></li>
+										<li><a th:href="@{/myprofile/change_password(id=${user.id})}">Alterar Senha<span class="pull-right glyphicon glyphicon-cog badge bg-blue"> Senha</span></a></li>
 									</ul>
 								</div>
 							</div>
