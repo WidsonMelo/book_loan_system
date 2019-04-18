@@ -305,17 +305,17 @@
                               role="form">
                             <fieldset>
                                 <!-- Form Name -->
-                                <legend>User Task Assignment</legend>
+                                <legend>Emprestar Novo Livro</legend>
                                 <!-- Text input-->
                                 <input type="hidden" name="id" th:field="${user_task.id}" />
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label">User</label>
+                                    <label class="col-md-4 control-label">Amigo</label>
                                     <div class="col-md-4 text-left">
                                         <select class="selectpicker" data-live-search="true"
-                                                title="Select User" name="user" tabindex="-98">
+                                                title="Selecione um Amigo" name="amigo" tabindex="-98">
 
-                                            <option th:each="user: ${users}" th:value="${user.id}"
-                                                    th:text="${user.name}"></option>
+                                            <option th:each="amigo: ${amigos}" th:value="${amigo.id}"
+                                                    th:text="${amigo.nome}"></option>
                                         </select>
                                     </div>
                                 </div>

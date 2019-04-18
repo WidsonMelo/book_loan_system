@@ -30,7 +30,7 @@ public class Amigo implements Serializable {
 	private String nome;
 
 	@Column(name = "email")
-	@Email(message = "*Please enter a valid email adress!")
+//	@Email(message = "*Please enter a valid email adress!")
 	@NotEmpty(message = "*Please provide an email! This field can not be empty!")
 	private String email;
 

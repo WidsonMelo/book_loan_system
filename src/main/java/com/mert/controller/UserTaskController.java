@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import com.mert.model.UserTask;
+import com.mert.service.AmigoService;
 import com.mert.service.TaskService;
 import com.mert.service.UserService;
 import com.mert.service.UserTaskService;
@@ -33,13 +34,17 @@ public class UserTaskController {
 
 	@Autowired
 	private TaskService taskService;
+	
+	@Autowired
+	private AmigoService amigoService;
 
 
 	@RequestMapping(value = "/new", method = RequestMethod.GET)
 	public ModelAndView newUserTask() {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("user_task", new UserTask());
-		modelAndView.addObject("users", userService.findAll());
+//		modelAndView.addObject("users", userService.findAll());
+		modelAndView.addObject("amigos", amigoService.findAll());
 		modelAndView.addObject("tasks", taskService.findAll());
 		modelAndView.addObject("auth", getUser());
 		modelAndView.addObject("control", getUser().getRole().getRole());
@@ -53,7 +58,6 @@ public class UserTaskController {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("rule", new UserTask());
 		modelAndView.addObject("user_tasks", userTaskService.findAll());
-		modelAndView.addObject("users", userService.findAll());
 		modelAndView.addObject("tasks", taskService.findAll());
 		modelAndView.addObject("auth", getUser());
 		modelAndView.addObject("control", getUser().getRole().getRole());
