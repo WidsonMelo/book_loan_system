@@ -5,7 +5,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>App MERT | PROFILE</title>
+	<title>Empréstimo de Livros</title>
 	<!-- Tell the browser to be responsive to screen width -->
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<!-- Bootstrap 3.3.6 -->
@@ -40,9 +40,10 @@
 		<!-- Logo -->
 		<a th:href="@{/home}" class="logo">
 			<!-- mini logo for sidebar mini 50x50 pixels -->
-			<span class="logo-mini"><b>M</b>RT</span>
+			<span class="logo-mini"><b>SEL</b></span>
+			
 			<!-- logo for regular state and mobile devices -->
-			<span class="logo-lg" th:utext="${auth.role.role}"> </span>
+			<span class="logo-lg"><b>SEL</b></span>
 
 		</a>
 		<!-- Header Navbar: style can be found in header.less -->
@@ -77,15 +78,14 @@
                             <!-- Menu Footer-->
 							<li class="user-footer">
 								<div class="pull-left">
-									<a th:href="@{/myprofile/inf}" class="btn btn-primary btn-flat">Profile</a>
-								</div>
-								<div class="col-xs-offset-1 col-xs-4 text-center">
-									<a  th:href="@{/myprofile/change_password(id=${auth.id})}"><i class="fa fa-gears"></i> Change
-										Password</a>
-								</div>
-								<div class="pull-right">
-									<a th:href="@{/logout}" class="btn btn-danger btn-flat">Sign out</a>
-								</div>
+                                    <a th:href="@{/myprofile/inf}" class="btn btn-primary btn-flat">Perfil</a>
+                                </div>
+                                <div class="col-xs-offset-1 col-xs-4 text-center">
+                                    <a  th:href="@{/myprofile/change_password(id=${auth.id})}"><i class="fa fa-gears"></i> Alterar Senha</a>
+                                </div>
+                                <div class="pull-right">
+                                    <a th:href="@{/logout}" class="btn btn-danger btn-flat">Sair</a>
+                                </div>
 							</li>
 						</ul>
 					</li>
@@ -93,12 +93,17 @@
 			</div>
 		</nav>
 	</header>
+	
+	
 	<!-- Left side column. contains the logo and sidebar -->
 	<aside class="main-sidebar">
 		<!-- sidebar: style can be found in sidebar.less -->
 		<section class="sidebar">
-			<!-- Sidebar user panel -->
+		
+		
+			<!-- Sidebar user panel -->	
 			<div class="user-panel">
+			<div><img src="/images/LogoComNome_2.png" alt="some text" width=210 height=220></div>
 				<div class="pull-left image">
 					<img src="/images/avatar5.png" class="img-circle" alt="User Image">
 				</div>
@@ -106,64 +111,46 @@
 					<p><span class="hidden-xs" th:utext="${auth.name}"></span></p>
 				</div>
 			</div>
-			<!-- search form -->
-			<form action="#" method="get" class="sidebar-form">
-				<div class="input-group">
-					<input type="text" name="q" class="form-control" placeholder="Search...">
-					<span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
-				</div>
-			</form>
+			
 			<!-- /.search form -->
 			<!-- sidebar menu: : style can be found in sidebar.less -->
 			<ul class="sidebar-menu">
-				<li class="header">MAIN NAVIGATION</li>
+				<li class="header">Menu de Navegação</li>
 				<li class="treeview">
 					<a th:href="@{/home}">
-						<i class="fa fa-home text-yellow"></i> <span>Home Page</span>
+						<i class="fa fa-home text-yellow"></i> <span>Início</span>
 						<span class="pull-right-container">
             </span>
 					</a>
 				</li>
 				<li th:if="${control != 'ADMIN'}" class="treeview">
 					<a th:href="@{/myprofile/mytasks(id=${auth.id})}">
-						<i class="fa fa-file-text text-green"></i> <span>My Tasks</span>
+						<i class="fa fa-file-text text-green"></i> <span>Meus Livros</span>
 						<span class="pull-right-container">
             </span>
 					</a>
 				</li>
 				<li th:if="${control != 'ADMIN'}" class="treeview">
 					<a th:href="@{/myprofile/inf}">
-						<i class="fa fa-gears text-blue"></i> <span>Profile Settings</span>
+						<i class="fa fa-gears text-blue"></i> <span>Configuração de Perfil</span>
 						<span class="pull-right-container">
             </span>
 					</a>
 				</li>
-				
 				<li class="treeview">
 					<a th:href="@{/users/all}">
 						<i class="fa fa-users text-green"></i>
-						<span>All Users</span>
-					</a>
-				</li>
-				
-				<li th:if="${control == 'ADMIN'}" class="treeview">
-					<a href="#">
-						<i class="fa fa-odnoklassniki text-blue"></i>
-						<span>User Types</span>
-						<span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+						<span>Amigos</span>
+						<i class="fa fa-angle-left pull-right"></i>
 					</a>
 					<ul class="treeview-menu">
-						<li><a th:href="@{/admin/roles/new}" ><i
-								class="fa fa-plus"></i> New User Type</a></li>
-						<li><a th:href="@{/admin/roles/all}" ><i class="fa fa-odnoklassniki"></i>
-							All User Types</a></li>
+						<li><a th:href="@{/amigos/new}"><i class="fa fa-plus"></i>Cadastrar Amigo</a></li>
+						<li><a th:href="@{/users/all}" ><i class="fa fa-odnoklassniki"></i>
+							Listar Todos os Amigos</a></li>
 					</ul>
+					
 				</li>
+
 				<li th:if="${control == 'ADMIN'}" class="treeview">
 					<a href="#">
 						<i class="fa fa-files-o text-purple"></i>
@@ -173,26 +160,40 @@
             </span>
 					</a>
 					<ul class="treeview-menu">
-						<li><a th:href="@{/admin/tasks/new}"><i class="fa fa-plus"></i> New Task</a></li>
-						<li><a th:href="@{/admin/tasks/all}"><i class="fa fa-file-text"></i> All Tasks</a></li>
+						<li><a th:href="@{/admin/tasks/new}"><i class="fa fa-plus"></i>Cadastrar Livro</a></li>
+						<li><a th:href="@{/admin/tasks/all}"><i class="fa fa-file-text"></i>Listar Todos os Livros</a></li>
 					</ul>
 				</li>
 				<li th:if="${control == 'ADMIN'}" class="treeview">
 					<a href="#">
-						<i class="fa fa-laptop text-red "></i>
+						<i class="fa fa-book text-red "></i>
 						<span>Empréstimo de Livros</span>
 						<span class="pull-right-container">
               <i class="fa fa-angle-left pull-right "></i>
             </span>
 					</a>
 					<ul class="treeview-menu">
-						<li><a th:href="@{/admin/user-task/new}"><i class="fa fa-laptop"></i> Task Assignment</a>
-						</li>
-						<li><a th:href="@{/admin/user-task/all}"><i class="fa fa-files-o"></i> User Tasks</a></li>
+						<li><a th:href="@{/admin/user-task/new}"><i class="fa fa-plus"></i>Cadastrar Empréstimo</a></li>
+						<li><a th:href="@{/admin/user-task/all}"><i class="fa fa-files-o"></i>Listar Todos os Empréstimos</a></li>
 					</ul>
 				</li>
-			</ul>
-		</section>
+				
+				<li><img src="/images/reta.png" alt="some text" width=230 height=50></li>
+				<li th:if="${control == 'ADMIN'}" class="treeview">
+					<a href="#">
+						<i class="fa fa-question-circle text-white "></i>
+						<span>Ajuda</span>
+						<span class="pull-right-container">
+              	<i class="fa fa-angle-left pull-right "></i>
+            	</span>
+					</a>
+				<ul class="treeview-menu">
+					<li><a th:href="@{/ajuda/sobre}"><i class="fa fa-question-circle"></i>Sobre o SEL</a></li>
+					<li><a th:href="@{/ajuda/manual}"><i class="fa fa-newspaper-o"></i>Manual de Uso</a></li>
+				</ul>
+				</li>
+				</ul>
+				</section>
 		<!-- /.sidebar -->
 	</aside>
 
@@ -205,7 +206,7 @@
 			<div th:if="${mode == 'MODE_INF'}">
 				<section class="content-header">
 					<h1>
-						Perfil do Usuário
+						PERFIL DE USUÁRIO
 					</h1>
 				</section>
 				<!-- Main content -->
@@ -219,14 +220,10 @@
 									<div class="widget-user-image">
 										<img class="img-circle" src="/images/avatar5.png" alt="User Avatar">
 									</div>
-									<small><cite class="pull-right" title="Ankara, TURKEY">Ankara,
-										TURKEY <i class="glyphicon glyphicon-map-marker"> </i>
-									</cite></small>
+
 									<!-- /.widget-user-image -->
 									<h3 class="widget-user-username"  >    	<span style="color: white"
 																					 th:utext="${user.name}"> </span></h3>
-									<h5 class=" pull-right widget-user-desc"  >    	<span style="color: white"
-																							 th:utext="${user.role.role}"> </span></h5>
 									<h5 class="widget-user-desc"  >    	<span style="color: white"
 																				 th:utext="${user.email}"> </span></h5>
 
@@ -234,8 +231,8 @@
 								</div>
 								<div class="box-footer no-padding">
 									<ul class="nav nav-stacked">
-										<li><a th:href="@{/myprofile/edit(id=${user.id})}">Editar informações do perfil <span class="pull-right glyphicon glyphicon-pencil  badge bg-blue"> Editar</span></a></li>
-										<li><a th:href="@{/myprofile/mytasks(id=${user.id})}">Mostrar meus livros <span class="pull-right glyphicon glyphicon-list-alt badge bg-blue"> Livros</span></a></li>
+										<li><a th:href="@{/myprofile/edit(id=${user.id})}">Editar Informação de Perfil<span class="pull-right glyphicon glyphicon-pencil  badge bg-blue"> Editar</span></a></li>
+										<li><a th:href="@{/admin/tasks/all}">Mostrar meus Livros<span class="pull-right glyphicon glyphicon-list-alt badge bg-blue"> Livros</span></a></li>
 										<li><a th:href="@{/myprofile/change_password(id=${user.id})}">Alterar Senha<span class="pull-right glyphicon glyphicon-cog badge bg-blue"> Senha</span></a></li>
 									</ul>
 								</div>
@@ -255,10 +252,10 @@
 							  role="form">
 							<fieldset>
 								<!-- Form Name -->
-								<legend>Edit Profile</legend>
+								<legend>Editar Perfil</legend>
 								<input type="hidden" name="id" th:field="${user.id}" />
 								<div class="form-group">
-									<label class="control-label col-lg-3">Name</label>
+									<label class="control-label col-lg-3">Nome</label>
 									<div class="col-md-4 text-left">
 										<input type="text" th:field="${user.name}" placeholder="Name"
 											   class="form-control" />
@@ -276,9 +273,9 @@
 									<label class="col-md-4 control-label" for="submitButton"></label>
 									<div class="col-md-8">
 										<button type="submit" id="submitButton" name="submitButton"
-												class="btn btn-success">Save</button>
+												class="btn btn-success">Salvar</button>
 										<button type="button" class="btn btn-inverse"
-												onclick="location.href='/myprofile/inf'">Cancel</button>
+												onclick="location.href='/myprofile/inf'">Cancelar</button>
 									</div>
 
 								</div>
@@ -339,28 +336,27 @@
 							  method="post" class="form-horizontal" role="form">
 							<fieldset>
 								<!-- Form Name -->
-								<legend>Change Password</legend>
+								<legend>ALTERAR SENHA</legend>
 								<input type="hidden" name="id" th:field="${user.id}" />
 								<div class="form-group">
-									<label class="control-label col-lg-3">Old password</label>
+									<label class="control-label col-lg-3">Senha Antiga</label>
 									<div class="col-md-4 text-left">
 										<input type="password" th:field="${user.name}"
-											   placeholder="Enter your old password..." class="form-control" />
+											   placeholder="Digite sua senha antiga..." class="form-control" />
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="control-label col-lg-3">New password</label>
+									<label class="control-label col-lg-3">Nova Senha</label>
 									<div class="col-md-4 text-left">
 										<input type="password" th:field="${user.password}"
-											   placeholder="Enter your new password..." class="form-control" />
+											   placeholder="Digite sua nova senha..." class="form-control" />
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="control-label col-lg-3">Confirm new
-										password</label>
+									<label class="control-label col-lg-3">Confirmação de Nova Senha</label>
 									<div class="col-md-4 text-left">
 										<input type="password"
-											   placeholder="Confirm your new password..." class="form-control" />
+											   placeholder="Confirme sua nova senha..." class="form-control" />
 									</div>
 								</div>
 
@@ -370,9 +366,9 @@
 									<label class="col-md-4 control-label" for="submitButton"></label>
 									<div class="col-md-8">
 										<button type="submit" id="submitButton" name="submitButton"
-												class="btn btn-success">Save</button>
+												class="btn btn-success">Savar</button>
 										<button type="button" class="btn btn-inverse"
-												onclick="location.href='/myprofile/inf'">Cancel</button>
+												onclick="location.href='/myprofile/inf'">Cancelar</button>
 									</div>
 
 								</div>
@@ -434,7 +430,36 @@
 <script>
 	$(function () {
 		$('#example1').DataTable({
-			"ordering": false
+			"ordering": false,
+			$(function () {
+		        $('#example1').DataTable({
+		            "ordering": false,
+		            "language" : {
+		                "sEmptyTable": "Nenhum registro encontrado",
+		                "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+		                "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+		                "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+		                "sInfoPostFix": "",
+		                "sInfoThousands": ".",
+		                "sLengthMenu": "_MENU_ resultados por página",
+		                "sLoadingRecords": "Carregando...",
+		                "sProcessing": "Processando...",
+		                "sZeroRecords": "Nenhum registro encontrado",
+		                "sSearch": "Pesquisar",
+		                "oPaginate": {
+		                    "sNext": "Próximo",
+		                    "sPrevious": "Anterior",
+		                    "sFirst": "Primeiro",
+		                    "sLast": "Último"
+		                },
+		                "oAria": {
+		                    "sSortAscending": ": Ordenar colunas de forma ascendente",
+		                    "sSortDescending": ": Ordenar colunas de forma descendente"
+		                }
+		            }
+		        });
+		        $('#table2').DataTable();
+		    });
 		});
 	});
 </script>

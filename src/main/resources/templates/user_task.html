@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>App MERT | TASK MANAGEMENT</title>
+    <title>Empréstimo de Livros</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
@@ -33,13 +33,14 @@
     <!-- Content Wrapper. Contains page content -->
     <header class="main-header">
         <!-- Logo -->
-        <a th:href="@{/home}" class="logo">
-            <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>M</b>RT</span>
-            <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg" th:utext="${auth.role.role}"> </span>
+		<a th:href="@{/home}" class="logo">
+			<!-- mini logo for sidebar mini 50x50 pixels -->
+			<span class="logo-mini"><b>SEL</b></span>
+			
+			<!-- logo for regular state and mobile devices -->
+			<span class="logo-lg"><b>SEL</b></span>
 
-        </a>
+		</a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
             <!-- Sidebar toggle button-->
@@ -72,14 +73,13 @@
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a th:href="@{/myprofile/inf}" class="btn btn-primary btn-flat">Profile</a>
+                                    <a th:href="@{/myprofile/inf}" class="btn btn-primary btn-flat">Perfil</a>
                                 </div>
                                 <div class="col-xs-offset-1 col-xs-4 text-center">
-                                    <a  th:href="@{/myprofile/change_password(id=${auth.id})}"><i class="fa fa-gears"></i> Change
-                                        Password</a>
+                                    <a  th:href="@{/myprofile/change_password(id=${auth.id})}"><i class="fa fa-gears"></i> Alterar Senha</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a th:href="@{/logout}" class="btn btn-danger btn-flat">Sign out</a>
+                                    <a th:href="@{/logout}" class="btn btn-danger btn-flat">Sair</a>
                                 </div>
                             </li>
                         </ul>
@@ -92,100 +92,101 @@
     <aside class="main-sidebar">
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
-            <!-- Sidebar user panel -->
-            <div class="user-panel">
-                <div class="pull-left image">
-                    <img src="/images/avatar5.png" class="img-circle" alt="User Image">
-                </div>
-                <div class="pull-left info">
-                    <p><span class="hidden-xs" th:utext="${auth.name}"></span></p>
-                </div>
-            </div>
-            <!-- search form -->
-            <form action="#" method="get" class="sidebar-form">
-                <div class="input-group">
-                    <input type="text" name="q" class="form-control" placeholder="Search...">
-                    <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
-                </div>
-            </form>
-            <!-- /.search form -->
-            <!-- sidebar menu: : style can be found in sidebar.less -->
-            <ul class="sidebar-menu">
-                <li class="header">MAIN NAVIGATION</li>
-                <li class="treeview">
-                    <a th:href="@{/home}">
-                        <i class="fa fa-home text-yellow"></i> <span>Home Page</span>
-                        <span class="pull-right-container">
+		
+		
+			<!-- Sidebar user panel -->	
+			<div class="user-panel">
+			<div><img src="/images/LogoComNome_2.png" alt="some text" width=210 height=220></div>
+				<div class="pull-left image">
+					<img src="/images/avatar5.png" class="img-circle" alt="User Image">
+				</div>
+				<div class="pull-left info">
+					<p><span class="hidden-xs" th:utext="${auth.name}"></span></p>
+				</div>
+			</div>
+			
+			<!-- /.search form -->
+			<!-- sidebar menu: : style can be found in sidebar.less -->
+			<ul class="sidebar-menu">
+				<li class="header">Menu de Navegação</li>
+				<li class="treeview">
+					<a th:href="@{/home}">
+						<i class="fa fa-home text-yellow"></i> <span>Início</span>
+						<span class="pull-right-container">
             </span>
-                    </a>
-                </li>
-                <li th:if="${control != 'ADMIN'}" class="treeview">
-                    <a th:href="@{/myprofile/mytasks(id=${auth.id})}">
-                        <i class="fa fa-file-text text-green"></i> <span>My Tasks</span>
-                        <span class="pull-right-container">
+					</a>
+				</li>
+				<li th:if="${control != 'ADMIN'}" class="treeview">
+					<a th:href="@{/myprofile/mytasks(id=${auth.id})}">
+						<i class="fa fa-file-text text-green"></i> <span>Meus Livros</span>
+						<span class="pull-right-container">
             </span>
-                    </a>
-                </li>
-                <li th:if="${control != 'ADMIN'}" class="treeview">
-                    <a th:href="@{/myprofile/inf}">
-                        <i class="fa fa-gears text-blue"></i> <span>Profile Settings</span>
-                        <span class="pull-right-container">
+					</a>
+				</li>
+				<li th:if="${control != 'ADMIN'}" class="treeview">
+					<a th:href="@{/myprofile/inf}">
+						<i class="fa fa-gears text-blue"></i> <span>Configuração de Perfil</span>
+						<span class="pull-right-container">
             </span>
-                    </a>
-                </li>
-                <li class="treeview">
-                    <a th:href="@{/users/all}">
-                        <i class="fa fa-users text-green"></i>
-                        <span>All Users</span>
-                    </a>
-                </li>
-                <li th:if="${control == 'ADMIN'}" class="treeview">
-                    <a href="#">
-                        <i class="fa fa-odnoklassniki text-blue"></i>
-                        <span>User Types</span>
-                        <span class="pull-right-container">
+					</a>
+				</li>
+				<li class="treeview">
+					<a th:href="@{/users/all}">
+						<i class="fa fa-users text-green"></i>
+						<span>Amigos</span>
+						<i class="fa fa-angle-left pull-right"></i>
+					</a>
+					<ul class="treeview-menu">
+						<li><a th:href="@{/amigos/new}"><i class="fa fa-plus"></i>Cadastrar Amigo</a></li>
+						<li><a th:href="@{/users/all}" ><i class="fa fa-odnoklassniki"></i>
+							Listar Todos os Amigos</a></li>
+					</ul>
+					
+				</li>
+
+				<li th:if="${control == 'ADMIN'}" class="treeview">
+					<a href="#">
+						<i class="fa fa-files-o text-purple"></i>
+						<span>Livros</span>
+						<span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li><a th:href="@{/admin/roles/new}" ><i
-                                class="fa fa-plus"></i> New User Type</a></li>
-                        <li><a th:href="@{/admin/roles/all}" ><i class="fa fa-odnoklassniki"></i>
-                            All User Types</a></li>
-                    </ul>
-                </li>
-                <li th:if="${control == 'ADMIN'}" class="treeview">
-                    <a href="#">
-                        <i class="fa fa-files-o text-purple"></i>
-                        <span>Livros</span>
-                        <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li><a th:href="@{/admin/tasks/new}"><i class="fa fa-plus"></i> New Task</a></li>
-                        <li><a th:href="@{/admin/tasks/all}"><i class="fa fa-file-text"></i> All Tasks</a></li>
-                    </ul>
-                </li>
-                <li th:if="${control == 'ADMIN'}" class="treeview">
-                    <a href="#">
-                        <i class="fa fa-laptop text-red "></i>
-                        <span>Empréstimo de Livros</span>
-                        <span class="pull-right-container">
+					</a>
+					<ul class="treeview-menu">
+						<li><a th:href="@{/admin/tasks/new}"><i class="fa fa-plus"></i>Cadastrar Livro</a></li>
+						<li><a th:href="@{/admin/tasks/all}"><i class="fa fa-file-text"></i>Listar Todos os Livros</a></li>
+					</ul>
+				</li>
+				<li th:if="${control == 'ADMIN'}" class="treeview">
+					<a href="#">
+						<i class="fa fa-book text-red "></i>
+						<span>Empréstimo de Livros</span>
+						<span class="pull-right-container">
               <i class="fa fa-angle-left pull-right "></i>
             </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li><a th:href="@{/admin/user-task/new}"><i class="fa fa-laptop"></i> Task Assignment</a>
-                        </li>
-                        <li><a th:href="@{/admin/user-task/all}"><i class="fa fa-files-o"></i> User Tasks</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </section>
+					</a>
+					<ul class="treeview-menu">
+						<li><a th:href="@{/admin/user-task/new}"><i class="fa fa-plus"></i>Cadastrar Empréstimo</a></li>
+						<li><a th:href="@{/admin/user-task/all}"><i class="fa fa-files-o"></i>Listar Todos os Empréstimos</a></li>
+					</ul>
+				</li>
+				
+				<li><img src="/images/reta.png" alt="some text" width=230 height=50></li>
+				<li th:if="${control == 'ADMIN'}" class="treeview">
+					<a href="#">
+						<i class="fa fa-question-circle text-white "></i>
+						<span>Ajuda</span>
+						<span class="pull-right-container">
+              	<i class="fa fa-angle-left pull-right "></i>
+            	</span>
+					</a>
+				<ul class="treeview-menu">
+					<li><a th:href="@{/ajuda/sobre}"><i class="fa fa-question-circle"></i>Sobre o SEL</a></li>
+					<li><a th:href="@{/ajuda/manual}"><i class="fa fa-newspaper-o"></i>Manual de Uso</a></li>
+				</ul>
+				</li>
+				</ul>
+				</section>
         <!-- /.sidebar -->
     </aside>
     <!-- Content Wrapper. Contains page content -->
@@ -199,8 +200,8 @@
             <div th:if="${mode == 'MODE_ALL'}">
                 <section class="content-header">
                     <h1>
-                        USER TASKS
-                        <small>user-tasks table</small>
+                        LIVROS EMPRESTADOS
+                        <small>Tabela de Empréstimos</small>
                     </h1>
                 </section>
 
@@ -214,23 +215,31 @@
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>
                                         <tr>
-                                            <th>User Name</th>
-                                            <th>User Task</th>
-                                            <th></th>
-                                            <th></th>
+                                            <th>Nome do Amigo</th>
+                                            <th>Nome do Livro</th>
+                                            <th>Data de Empréstimo</th>
+                                            <th>Editar</th>
+                                            <th>Devolver</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <tr th:each="usertask : ${user_tasks}">
                                             <td th:text="${usertask.user.name}"></td>
                                             <td th:text="${usertask.task.name}"></td>
+                                            <td th:text="${usertask.dateCreated}"></td>
                                             <td><a
                                                     th:href="@{/admin/user-task/update(id=${usertask.id})}"><span
-                                                    class="glyphicon glyphicon-pencil"></span> EDIT</a></td>
-                                            <td><a
-                                                    th:href="@{/admin/user-task/delete(id=${usertask.id})}"><span
-                                                    class="glyphicon glyphicon-trash"></span> DELETE</a></td>
-                                        </tr>
+                                                    class="glyphicon glyphicon-pencil"></span> Editar</a></td>
+<!--                                             <td><a -->
+<!--                                                     th:href="@{/admin/user-task/delete(id=${usertask.id})}"><span -->
+<!--                                                     class="glyphicon glyphicon-trash"></span> Devolver</a></td>                                        -->
+<!--                                         	</tr> -->
+                                        	
+                                        	<td>
+												    <a id="a_id" onclick="myFunction()" th:href="@{/admin/user-task/delete(id=${usertask.id})}">
+												        <span class="glyphicon glyphicon-trash"></span> Devolver
+												    </a>
+											</td>
                                         </tbody>
                                     </table>
                                 </div>
@@ -252,12 +261,12 @@
                               role="form">
                             <fieldset>
                                 <!-- Form Name -->
-                                <legend>Edit User Task</legend>
+                                <legend>Editar Empréstimo de Livro</legend>
                                 <!-- Text input-->
                                 <input type="hidden" name="id" th:field="${user_task.id}" />
 
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label">User Name</label>
+                                    <label class="col-md-4 control-label">Nome do Amigo</label>
                                     <div class="col-md-3 text-left">
                                         <input type="hidden" th:field="${user_task.user.id}"
                                                placeholder="user" class="form-control" /> <input type="text"
@@ -267,16 +276,28 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label">User Task</label>
+                                    <label class="col-md-4 control-label">Livro Emprestado</label>
                                     <div class="col-md-4 text-left">
-                                        <select class="selectpicker" data-live-search="true"
-                                                th:title="${user_task.task.name}" name="task" tabindex="-98">
+                                    <input type="hidden" th:field="${user_task.task.id}"
+                                               placeholder="task" class="form-control" /> <input type="text"
+                                                                                                 th:field="${user_task.task.name}" placeholder="task"
+                                                                                                 class="form-control" disabled />
+<!--                                         <select class="selectpicker" data-live-search="true" -->
+<!--                                                 th:title="${user_task.task.name}" name="task" tabindex="-98"> -->
 
-                                            <option th:each="task: ${tasks}" th:value="${task.id}"
-                                                    th:if="${user_task.task.id} == ${task.id}" selected="selected"  th:text="${task.name}"></option>
-                                            <option th:each="task: ${tasks}" th:value="${task.id}"
-                                                    th:if="${user_task.task.id} != ${task.id}"  th:text="${task.name}"></option>
+<!--                                             <option th:each="task: ${tasks}" th:value="${task.id}" -->
+<!--                                                     th:if="${user_task.task.id} == ${task.id}" selected="selected"  th:text="${user_task.task.name}"></option> -->
+<!--                                             <option th:each="task: ${tasks}" th:value="${task.id}" -->
+<!--                                                     th:if="${user_task.task.id} != ${task.id}"  th:text="${user_task.task.name}"></option> -->
                                         </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="textinput">Data do Empréstimo</label>
+                                    <div class="col-md-4">
+                                        <input type="text" th:field="${user_task.dateCreated}"
+                                               placeholder="Data" class="form-control"/>
                                     </div>
                                 </div>
 
@@ -285,9 +306,9 @@
                                     <label class="col-md-4 control-label" for="submitButton"></label>
                                     <div class="col-md-8">
                                         <button type="submit" id="submitButton" name="submitButton"
-                                                class="btn btn-success">Save</button>
+                                                class="btn btn-success">Salvar</button>
                                         <button type="button" class="btn btn-inverse"
-                                                onclick="window.history.back()">Cancel</button>
+                                                onclick="window.history.back()">Cancelar</button>
                                     </div>
 
                                 </div>
@@ -305,17 +326,17 @@
                               role="form">
                             <fieldset>
                                 <!-- Form Name -->
-                                <legend>Emprestar Novo Livro</legend>
+                                <legend>CADASTRAR EMPRÉSTIMO</legend>
                                 <!-- Text input-->
                                 <input type="hidden" name="id" th:field="${user_task.id}" />
                                 <div class="form-group">
                                     <label class="col-md-4 control-label">Amigo</label>
                                     <div class="col-md-4 text-left">
                                         <select class="selectpicker" data-live-search="true"
-                                                title="Selecione um Amigo" name="amigo" tabindex="-98">
+                                                title="Selecionar Amigo" name="user" tabindex="-98">
 
-                                            <option th:each="amigo: ${amigos}" th:value="${amigo.id}"
-                                                    th:text="${amigo.nome}"></option>
+                                            <option th:each="user: ${users}" th:value="${user.id}"
+                                                    th:text="${user.name}"></option>
                                         </select>
                                     </div>
                                 </div>
@@ -324,9 +345,10 @@
                                     <label class="col-md-4 control-label">Livro</label>
                                     <div class="col-md-4 text-left">
                                         <select class="selectpicker" data-live-search="true"
-                                                title="Selecione um Livro" name="task" tabindex="-98">
+                                                title="Selecionar Livro" name="task" tabindex="-98">
                                             <option th:each="task: ${tasks}" th:value="${task.id}"
-                                                    th:text="${task.name}"></option>
+                                                    th:text="${task.name} + ' (' + ${task.description + ')'}"></option>
+                                                    
                                         </select>
                                     </div>
                                 </div>
@@ -336,9 +358,9 @@
                                     <label class="col-md-4 control-label" for="submitButton"></label>
                                     <div class="col-md-8">
                                         <button type="submit" id="submitButton" name="submitButton"
-                                                class="btn btn-success">Save</button>
+                                                class="btn btn-success">Salvar</button>
                                         <button type="button" class="btn btn-inverse"
-                                                onclick="window.history.back()">Cancel</button>
+                                                onclick="window.history.back()">Cancelar</button>
                                     </div>
 
                                 </div>
@@ -375,9 +397,39 @@
 <script>
     $(function () {
         $('#example1').DataTable({
-            "ordering": false
+            "ordering": false,
+            "language" : {
+                "sEmptyTable": "Nenhum registro encontrado",
+                "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+                "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+                "sInfoPostFix": "",
+                "sInfoThousands": ".",
+                "sLengthMenu": "_MENU_ resultados por página",
+                "sLoadingRecords": "Carregando...",
+                "sProcessing": "Processando...",
+                "sZeroRecords": "Nenhum registro encontrado",
+                "sSearch": "Pesquisar",
+                "oPaginate": {
+                    "sNext": "Próximo",
+                    "sPrevious": "Anterior",
+                    "sFirst": "Primeiro",
+                    "sLast": "Último"
+                },
+                "oAria": {
+                    "sSortAscending": ": Ordenar colunas de forma ascendente",
+                    "sSortDescending": ": Ordenar colunas de forma descendente"
+                }
+            }
         });
         $('#table2').DataTable();
+    });
+</script>
+<script type="text/javascript">
+    $(function() {
+        $('td a#a_id').click(function() {
+            return confirm("Tem certeza que deseja excluir?");
+        });
     });
 </script>
 </body>

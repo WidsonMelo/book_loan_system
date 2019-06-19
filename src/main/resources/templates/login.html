@@ -3,7 +3,7 @@
       xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>App MERT | Login</title>
+    <title>Empréstimo de Livros</title>
     <link rel="stylesheet" th:href="@{/css/login.css}" />
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -16,15 +16,15 @@
         <div class="col-sm-6 col-md-4 col-md-offset-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <strong> Faça Login para Continuar</strong>
+                    <strong>Faça login em sua conta</strong>
                 </div>
                 <div class="panel-body">
                     <form role="form" th:action="@{/login}" method="POST">
                         <fieldset>
                             <div class="row">
                                 <div class="center-block">
-                                    <img th:src="@{/images/LoginRed.jpg}"
-                                         class="img-responsive center-block" width="200" height="200"
+                                    <img th:src="@{/images/LogoMaior.png}"
+                                         class="img-responsive center-block" width="300" height="300"
                                          alt="Logo" />
                                 </div>
                             </div>
@@ -49,20 +49,19 @@
 
                                     <div align="center" th:if="${param.error}">
                                         <p style="font-size: 20; color: #FF1C19;">Email ou
-                                            Senha inválida</p>
+                                            Senha inválido, verifique os campos</p>
                                     </div>
                                     <div class="form-group">
                                         <input type="submit" class="btn btn-lg btn-primary btn-block"
-                                               name="Submit" value="Login">
+                                               name="Submit" value="Entrar">
                                     </div>
                                 </div>
                             </div>
                         </fieldset>
                     </form>
                 </div>
-                <div class="panel-footer ">
-                    Não possui uma conta? <a th:href="@{/registration}" onClick="">
-                    Registre-se Aqui </a>
+                <div class="panel-footer ">     Não possui uma conta? <a th:href="@{/registration}" onClick="">
+                    Cadastre-se.</a>
                 </div>
             </div>
         </div>

@@ -47,4 +47,20 @@ public class UserTaskService {
 	public List<UserTask> findByUser(User user) {
 		return userTaskRepository.findByUser(user);
 	}
+	
+	public List<UserTask> findByUserId(int userid){
+		List<UserTask> usertasks = this.findAll();
+		
+		List<UserTask> usertasksFinal = new ArrayList<>();
+		
+		for (UserTask usertask : usertasks) {
+			if(usertask.getUserid() == userid) {
+				usertasksFinal.add(usertask);
+			}
+		}
+		
+		return usertasksFinal;
+	}
+	
+	
 }

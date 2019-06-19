@@ -5,7 +5,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>App MERT | HOME</title>
+	<title>Empréstimo de Livros</title>
 	<!-- Tell the browser to be responsive to screen width -->
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<!-- Bootstrap 3.3.6 -->
@@ -39,12 +39,12 @@
 		<!-- Logo -->
 		<a th:href="@{/home}" class="logo">
 			<!-- mini logo for sidebar mini 50x50 pixels -->
-			<span class="logo-mini"><b>M</b>RT</span>Book Loan System
+			<span class="logo-mini"><b>SEL</b></span>
+			
 			<!-- logo for regular state and mobile devices -->
-<!-- 			<span class="logo-lg" th:utext="${auth.role.role}"> </span> -->
-<!-- 			<span class="logo-lg" th:text= "oioi" th:utext="ttt"> </span>  -->
+			<span class="logo-lg"><b>SEL</b></span>
+
 		</a>
-		
 		<!-- Header Navbar: style can be found in header.less -->
 		<nav class="navbar navbar-static-top">
 			<!-- Sidebar toggle button-->
@@ -76,17 +76,16 @@
 							<!-- Menu Body --
                             <!-- Menu Footer-->
 							<li class="user-footer">
-                                <div class="pull-left">
+								<div class="pull-left">
                                     <a th:href="@{/myprofile/inf}" class="btn btn-primary btn-flat">Perfil</a>
                                 </div>
                                 <div class="col-xs-offset-1 col-xs-4 text-center">
-                                    <a  th:href="@{/myprofile/change_password(id=${auth.id})}"><i class="fa fa-gears"></i> Change
-                                        Password</a>
+                                    <a  th:href="@{/myprofile/change_password(id=${auth.id})}"><i class="fa fa-gears"></i> Alterar Senha</a>
                                 </div>
                                 <div class="pull-right">
                                     <a th:href="@{/logout}" class="btn btn-danger btn-flat">Sair</a>
                                 </div>
-                            </li>
+							</li>
 						</ul>
 					</li>
 				</ul>
@@ -97,8 +96,11 @@
 	<aside class="main-sidebar">
 		<!-- sidebar: style can be found in sidebar.less -->
 		<section class="sidebar">
-			<!-- Sidebar user panel -->
+		
+		
+			<!-- Sidebar user panel -->	
 			<div class="user-panel">
+			<div><img src="/images/LogoComNome_2.png" alt="some text" width=210 height=220></div>
 				<div class="pull-left image">
 					<img src="/images/avatar5.png" class="img-circle" alt="User Image">
 				</div>
@@ -106,20 +108,11 @@
 					<p><span class="hidden-xs" th:utext="${auth.name}"></span></p>
 				</div>
 			</div>
-			<!-- search form -->
-			<form action="#" method="get" class="sidebar-form">
-				<div class="input-group">
-					<input type="text" name="q" class="form-control" placeholder="Pesquisar...">
-					<span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
-				</div>
-			</form>
+			
 			<!-- /.search form -->
 			<!-- sidebar menu: : style can be found in sidebar.less -->
 			<ul class="sidebar-menu">
-				<li class="header">MENU</li>
+				<li class="header">Menu de Navegação</li>
 				<li class="treeview">
 					<a th:href="@{/home}">
 						<i class="fa fa-home text-yellow"></i> <span>Início</span>
@@ -129,73 +122,32 @@
 				</li>
 				<li th:if="${control != 'ADMIN'}" class="treeview">
 					<a th:href="@{/myprofile/mytasks(id=${auth.id})}">
-						<i class="fa fa-file-text text-green"></i> <span>My Tasks</span>
+						<i class="fa fa-file-text text-green"></i> <span>Meus Livros</span>
 						<span class="pull-right-container">
             </span>
 					</a>
 				</li>
 				<li th:if="${control != 'ADMIN'}" class="treeview">
 					<a th:href="@{/myprofile/inf}">
-						<i class="fa fa-gears text-blue"></i> <span>Configurações de Perfil</span>
+						<i class="fa fa-gears text-blue"></i> <span>Configuração de Perfil</span>
 						<span class="pull-right-container">
             </span>
 					</a>
 				</li>
-				
-				
-				
-				<li th:if="${control == 'ADMIN'}" class="treeview">
-					<a href="#">
-						<i class="fa fa-odnoklassniki text-blue"></i>
+				<li class="treeview">
+					<a th:href="@{/users/all}">
+						<i class="fa fa-users text-green"></i>
 						<span>Amigos</span>
-						<span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+						<i class="fa fa-angle-left pull-right"></i>
 					</a>
 					<ul class="treeview-menu">
-						<li><a th:href="@{/admin/amigos/new}" ><i
-								class="fa fa-plus"></i>Novo Amigo</a></li>
-						<li><a th:href="@{/admin/amigos/all}" ><i class="fa fa-odnoklassniki"></i>
-							Todos os Amigos</a></li>
+						<li><a th:href="@{/amigos/new}"><i class="fa fa-plus"></i>Cadastrar Amigo</a></li>
+						<li><a th:href="@{/users/all}" ><i class="fa fa-odnoklassniki"></i>
+							Listar Todos os Amigos</a></li>
 					</ul>
+					
 				</li>
-				
-				
-				
-				
-				
-<!-- 				<li class="treeview"> -->
-<!-- 					<a th:href="@{/users/all}"> -->
-<!-- 						<i class="fa fa-users text-green"></i> -->
-<!-- 						<span>All Users</span> -->
-<!-- 					</a> -->
-<!-- 				</li> -->
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-<!-- 				<li th:if="${control == 'ADMIN'}" class="treeview"> -->
-<!-- 					<a href="#"> -->
-<!-- 						<i class="fa fa-odnoklassniki text-blue"></i> -->
-<!-- 						<span>User Types</span> -->
-<!-- 						<span class="pull-right-container"> -->
-<!--               <i class="fa fa-angle-left pull-right"></i> -->
-<!--             </span> -->
-<!-- 					</a> -->
-<!-- 					<ul class="treeview-menu"> -->
-<!-- 						<li><a th:href="@{/admin/roles/new}" ><i -->
-<!-- 								class="fa fa-plus"></i> New User Type</a></li> -->
-<!-- 						<li><a th:href="@{/admin/roles/all}" ><i class="fa fa-odnoklassniki"></i> -->
-<!-- 							All User Types</a></li> -->
-<!-- 					</ul> -->
-<!-- 				</li> -->
+
 				<li th:if="${control == 'ADMIN'}" class="treeview">
 					<a href="#">
 						<i class="fa fa-files-o text-purple"></i>
@@ -205,26 +157,42 @@
             </span>
 					</a>
 					<ul class="treeview-menu">
-						<li><a th:href="@{/admin/tasks/new}"><i class="fa fa-plus"></i> New Task</a></li>
-						<li><a th:href="@{/admin/tasks/all}"><i class="fa fa-file-text"></i> All Tasks</a></li>
+						<li><a th:href="@{/admin/tasks/new}"><i class="fa fa-plus"></i>Cadastrar Livro</a></li>
+						<li><a th:href="@{/admin/tasks/all}"><i class="fa fa-file-text"></i>Listar Todos os Livros</a></li>
 					</ul>
 				</li>
 				<li th:if="${control == 'ADMIN'}" class="treeview">
 					<a href="#">
-						<i class="fa fa-laptop text-red "></i>
+						<i class="fa fa-book text-red "></i>
 						<span>Empréstimo de Livros</span>
 						<span class="pull-right-container">
               <i class="fa fa-angle-left pull-right "></i>
             </span>
 					</a>
 					<ul class="treeview-menu">
-						<li><a th:href="@{/admin/user-task/new}"><i class="fa fa-laptop"></i> Task Assignment</a>
-						</li>
-						<li><a th:href="@{/admin/user-task/all}"><i class="fa fa-files-o"></i> User Tasks</a></li>
+						<li><a th:href="@{/admin/user-task/new}"><i class="fa fa-plus"></i>Cadastrar Empréstimo</a></li>
+						<li><a th:href="@{/admin/user-task/all}"><i class="fa fa-files-o"></i>Listar Todos os Empréstimos</a></li>
 					</ul>
 				</li>
-			</ul>
-		</section>
+				
+				<li><img src="/images/reta.png" alt="some text" width=230 height=50></li>
+				<li th:if="${control == 'ADMIN'}" class="treeview">
+					<a href="#">
+						<i class="fa fa-question-circle text-white "></i>
+						<span>Ajuda</span>
+						<span class="pull-right-container">
+              	<i class="fa fa-angle-left pull-right "></i>
+            	</span>
+					</a>
+				<ul class="treeview-menu">
+					<li><a th:href="@{/ajuda/sobre}"><i class="fa fa-question-circle"></i>Sobre o SEL</a></li>
+					<li><a th:href="@{/ajuda/manual}"><i class="fa fa-newspaper-o"></i>Manual de Uso</a></li>
+				</ul>
+				</li>
+				</ul>
+				</section>
+				
+				
 		<!-- /.sidebar -->
 	</aside>
 
@@ -233,7 +201,7 @@
 		<!-- Content Header (Page header) -->
 		<section class="content-header">
 			<h1>
-				Início
+				INÍCIO
 			</h1>
 		</section>
 
@@ -248,32 +216,15 @@
 								<h3>      	<span style="color: white; font-weight: bold"
 												  th:utext="${userCount}"></span></h3>
 
-								<p>User Registrations</p>
+								<p>Amigos Cadastrados</p>
 							</div>
 							<div class="icon">
 								<i class="ion ion-person"></i>
 							</div>
-							<a th:href="@{/users/all}" class="small-box-footer">More info <i
+							<a th:href="@{/users/all}" class="small-box-footer">Mais Informações<i
 									class="fa fa-arrow-circle-right"></i></a>
 						</div>
 					</div>
-					
-					<div class="col-lg-3 col-xs-6">
-						<!-- small box -->
-						<div class="small-box bg-green">
-							<div class="inner">
-								<h3>      	<span style="color: white; font-weight: bold"
-												  th:utext="${amigosCount}"></span></h3>
-								<p>Amigos Registrados</p>
-							</div>
-							<div class="icon">
-								<i class="ion ion-person"></i>
-							</div>
-							<a th:href="@{/admin/amigos/all}" class="small-box-footer">More info <i
-									class="fa fa-arrow-circle-right"></i></a>
-						</div>
-					</div>
-					
 					
 					<div class="col-lg-3 col-xs-6">
 						<!-- small box -->
@@ -285,18 +236,37 @@
 							</div>
 							<div class="icon">
 								<i class="icon ion-compose"></i>
+								
 							</div>
-							<a th:href="@{/admin/tasks/all}" class="small-box-footer">More info <i
+							<a th:href="@{/admin/tasks/all}" class="small-box-footer">Mais Informações <i
 									class="fa fa-arrow-circle-right"></i></a>
 						</div>
 					</div>
+					
+					<div class="col-lg-3 col-xs-6">
+						<!-- small box -->
+						<div class="small-box bg-green">
+							<div class="inner">
+								<h3>      	<span style="color: white; font-weight: bold"
+												  th:utext="${adminCount}"></span></h3>
+								<p>Livros Emprestados</p>
+							</div>
+							<div class="icon">
+<!-- 								<i class="ion ion-person"></i> -->
+								<i class="ion fa-user-md"></i>
+								
+							</div>
+							<a th:href="@{/admin/user-task/all}" class="small-box-footer">Mais Informações <i
+									class="fa fa-arrow-circle-right"></i></a>
+						</div>
+					</div>
+					
 				</div>
 			</div>
 
 			<div class="row">
 				<div class="col-lg-offset-3 col-lg-4 col-xs-6">
-					<h2 class="headline text-black">Seja bem vindo <span class="hidden-xs" ></span></h2>
-					
+					<h2 class="headline text-black">Bem Vindo - <span class="hidden-xs" th:utext="${auth.name}"></span></h2>
 					<!-- /.error-content -->
 				</div>
 			</div>
@@ -308,7 +278,7 @@
 						<!-- Add the bg color to the header using any of the bg-* classes -->
 						<div class="widget-user-header bg-purple-active">
 							<h3 class="widget-user-username"> <span class="hidden-xs" th:utext="${auth.name}"></span></h3>
-							<h5 class="widget-user-desc"> <span class="hidden-xs" th:utext="${auth.role.role}"></span></h5>
+<!-- 							<h5 class="widget-user-desc"> <span class="hidden-xs" th:utext="${auth.role.role}"></span></h5> -->
 						</div>
 						<div class="widget-user-image">
 							<img class="img-circle" src="/images/avatar5.png" alt="User Avatar">
@@ -323,8 +293,10 @@
 								<!-- /.col -->
 								<div class="col-sm-4 border-right">
 									<div class="description-block">
-										<h5 class="description-header"> <span class="hidden-xs" th:utext="${userTaskSize}"></span></h5>
-										<span class="description-text">TASKS</span>
+									<span class="hidden-xs" th:utext="${auth.email}"></span>
+<!-- 										<h5 class="description-header"> <span class="hidden-xs" th:utext="${userTaskSize}"></span></h5> -->
+<!--										<h8 class="description-header"> <span class="hidden-xs" th:utext="${userTaskSize}"></span></h8> -->
+										<span class="description-text">.</span>
 									</div>
 									<!-- /.description-block -->
 								</div>

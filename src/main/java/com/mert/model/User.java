@@ -28,29 +28,34 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
 	private int id;
-	
+
 	@Column(name = "email")
-	@Email(message = "*Please enter a valid email adress!")
-	@NotEmpty(message = "*Please provide an email! This field can not be empty!")
+	@Email(message = "Digite um endereço de email válido!")
+	@NotEmpty(message = "Este campo não pode ser vazio!")
 	private String email;
-	
+
 	@Column(name = "password")
-	@Length(min = 3, message = "*Your password can not be less than 3 characters!")
-	@NotEmpty(message = "*Please provide your password! This field can not be empty!")
+	@Length(min = 3, message = "Sua senha deve conter pelo menos três caracteres!")
+	@NotEmpty(message = "Este campo não pode ser vazio!")
 	@Transient
+
 	private String password;
-	
 	@Column(name = "name")
-	@NotEmpty(message = "*Please provide your name! This field can not be empty!")
+	@NotEmpty(message = "Este campo não pode ser vazio!")
 	private String name;
-	
+
 	@Column(name = "active")
 	private int active;
-	
-	
+
+	@Column(name = "userid")
+	private int userid;
+
+	@Column(name = "telefone")
+	private String telefone;
+
 	@ManyToOne
 	private Role role;
-	
+
 	@OneToMany(mappedBy = "user")
 	private Set<UserTask> userTask = new HashSet<UserTask>();
 
@@ -102,7 +107,6 @@ public class User {
 		this.role = role;
 	}
 
-
 	public Set<UserTask> getUserTask() {
 		return userTask;
 	}
@@ -110,7 +114,21 @@ public class User {
 	public void setUserTask(Set<UserTask> userTask) {
 		this.userTask = userTask;
 	}
-	
-	
+
+	public int getUserid() {
+		return userid;
+	}
+
+	public void setUserid(int userid) {
+		this.userid = userid;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
 
 }

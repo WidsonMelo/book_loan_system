@@ -10,4 +10,5 @@ import com.mert.model.Task;
 
 @Repository("taskRepository")
 public interface TaskRepository extends JpaRepository<Task, Integer> {
+	//List<Task> findByUserId(int userid);
 }

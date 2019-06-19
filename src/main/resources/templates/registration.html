@@ -29,14 +29,22 @@
 	<div class="container">
 		<div class="row main">
 			<div class="main-login main-center">
+			<div class="panel-heading">
+                    
+                </div>
 
 				<form autocomplete="off" action="#" th:action="@{/registration}"
 					th:object="${user}" method="post" class="form-horizontal"
 					role="form">
 					<fieldset>
 						<!-- Form Name -->
-						<legend>Create your account</legend>
+						<legend>Crie sua conta</legend>
 						<!-- Text input-->
+						<div class="center-block">
+                                    <img th:src="@{/images/LogoMenor.png}"
+                                         class="img-responsive center-block" width="100" height="100"
+                                         alt="Logo" />
+                                </div>
 
 						<div class="form-group">
 							<label for="name" class="cols-sm-2 control-label"></label>
@@ -44,7 +52,7 @@
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-user fa"
 										aria-hidden="true"></i></span> <input type="text" th:field="*{name}"
-										placeholder="Name" class="form-control" />
+										placeholder="Nome" class="form-control" />
 								</div>
 								<label th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
 									class="validation-message"></label>
@@ -58,7 +66,7 @@
 								<div class="input-group">
 									<span class="input-group-addon"><i
 										class="fa fa-envelope fa" aria-hidden="true"></i></span> <input
-										type="text" th:field="*{email}" placeholder="Email"
+										type="email" th:field="*{email}" placeholder="Email"
 										class="form-control" />
 								</div>
 								<label th:if="${#fields.hasErrors('email')}"
@@ -76,7 +84,7 @@
 								<div class="input-group">
 									<span class="input-group-addon"><i
 										class="fa fa-lock fa-lg" aria-hidden="true"></i></span> <input
-										type="password" th:field="*{password}" placeholder="Password"
+										type="password" th:field="*{password}" placeholder="Senha"
 										class="form-control" />
 								</div>
 								<label th:if="${#fields.hasErrors('password')}"
@@ -90,13 +98,13 @@
 
 						<div class="form-group">
 							<input type="submit" class="btn btn-lg btn-primary btn-block"
-								name="Submit" value="Register">
+								name="Submit" value="Cadastrar">
 						</div>
 					</fieldset>
 				</form>
 				<div class="panel-footer ">
-					Already have an account? <a th:href="@{/login}" onClick="">
-						Login </a>
+					Já possui uma conta? <a th:href="@{/login}" onClick="">
+						Entre </a>
 				</div>
 			</div>
 

@@ -1,5 +1,8 @@
 package com.mert.controller;
 
+/**
+ * Created by Yasin Mert on 25.02.2017.
+ */
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,81 +15,92 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.mert.model.Amigo;
-import com.mert.model.Task;
 import com.mert.model.User;
-import com.mert.service.AmigoService;
 import com.mert.service.UserService;
 
 @Controller
-@RequestMapping("/admin/amigos")
+@RequestMapping("/amigos")
 public class AmigoController {
 
-	@Autowired
-	private AmigoService amigoService;
 
 	@Autowired
 	private UserService userService;
 
-	@RequestMapping(value = "/new", method = RequestMethod.GET)
-	public ModelAndView newAmigo() {
+//	@Autowired
+//	private RoleService roleService;
+
+
+
+	
+	@RequestMapping(value = "/all", method = RequestMethod.GET)
+	public ModelAndView allUsers() {
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("amigo", new Amigo());
-		modelAndView.addObject("amigos", amigoService.findAll());
+		//POINT=7 http://stackoverflow.com/questions/22364886/neither-bindingresult-nor-plain-target-object-for-bean-available-as-request-attr
+		modelAndView.addObject("users", userService.findAllFriends());
+		modelAndView.addObject("mode", "MODE_ALL");
 		modelAndView.addObject("auth", getUser());
 		modelAndView.addObject("control", getUser().getRole().getRole());
-		modelAndView.addObject("mode", "MODE_NEW");
-		modelAndView.setViewName("amigo");
+		modelAndView.setViewName("user");
 		return modelAndView;
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public ModelAndView saveAmigo(@Valid Amigo amigo, BindingResult bindingResult) {
-		amigoService.save(amigo);
-		ModelAndView modelAndView = new ModelAndView("redirect:/admin/amigos/all");
-		modelAndView.addObject("auth", getUser());
-		modelAndView.addObject("control", getUser().getRole().getRole());
+	public ModelAndView saveUser(@Valid User user, BindingResult bindingResult) {
+		ModelAndView modelAndView = new ModelAndView("redirect:/users/all");
+		//user.setPassword(null);
+		//user.setActive(1);
+		user.setTelefone(user.getTelefone());
+		user.setUserid(getUser().getId());
+		userService.saveFriend(user);
 		return modelAndView;
 	}
+	
 
-	@RequestMapping(value = "/all", method = RequestMethod.GET)
-	public ModelAndView allAmigos() {
+	
+	@RequestMapping(value="/new", method = RequestMethod.GET)
+	public ModelAndView newTask(){
 		ModelAndView modelAndView = new ModelAndView();
-//		modelAndView.addObject("rule", new Amigo());
-		modelAndView.addObject("amigos", amigoService.findAll());
+		modelAndView.addObject("user", new User());
+		modelAndView.addObject("users", userService.findAll());
 		modelAndView.addObject("auth", getUser());
 		modelAndView.addObject("control", getUser().getRole().getRole());
-		modelAndView.addObject("mode", "MODE_ALL");
-		modelAndView.setViewName("amigo");
+		modelAndView.addObject("mode", "MODE_NEW");
+		modelAndView.setViewName("user");
 		return modelAndView;
 	}
 	
-	@RequestMapping(value = "/update", method = RequestMethod.GET)
-	public ModelAndView updateTask(@RequestParam int id) {
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("rule", new Amigo());
-		modelAndView.addObject("amigo", amigoService.findAmigo(id));
-		modelAndView.addObject("auth", getUser());
-		modelAndView.addObject("control",getUser().getRole().getRole());
-		modelAndView.addObject("mode", "MODE_UPDATE");
-		modelAndView.setViewName("amigo");
-		return modelAndView;
-	}
-	
+//	@RequestMapping(value = "/save", method = RequestMethod.POST)
+//	public ModelAndView saveUser(@Valid User user, BindingResult bindingResult) {
+//		ModelAndView modelAndView = new ModelAndView("redirect:/users/all");
+//		user.setPassword(userService.findUser(user.getId()).getPassword());
+//		user.setActive(userService.findUser(user.getId()).getActive());
+//		modelAndView.addObject("auth", getUser());
+//		modelAndView.addObject("control", getUser().getRole().getRole());
+//		userService.save(user);
+//		return modelAndView;
+//	}
+
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
-	public ModelAndView deleteTask(@RequestParam int id) {
-		ModelAndView modelAndView = new ModelAndView("redirect:/admin/amigos/all");
-		modelAndView.addObject("rule", new Task());
+	public ModelAndView deleteUser(@RequestParam int id) {
+		ModelAndView modelAndView = new ModelAndView("redirect:/users/all");
+		modelAndView.addObject("rule", new User());
 		modelAndView.addObject("auth", getUser());
 		modelAndView.addObject("control", getUser().getRole().getRole());
-		amigoService.delete(id);
+		userService.delete(id);
 		return modelAndView;
 	}
-	
 
-	private User getUser() {
+	private User getUser(){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.findUserByEmail(auth.getName());
 		return user;
 	}
 }
+
+
+
+
+
+
+
+

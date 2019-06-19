@@ -6,7 +6,6 @@ package com.mert.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -16,9 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.mert.model.Role;
 import com.mert.model.User;
-
 import com.mert.service.RoleService;
 import com.mert.service.UserService;
 
@@ -39,8 +36,10 @@ public class UserController {
 	public ModelAndView allUsers() {
 		ModelAndView modelAndView = new ModelAndView();
 		//POINT=7 http://stackoverflow.com/questions/22364886/neither-bindingresult-nor-plain-target-object-for-bean-available-as-request-attr
-		modelAndView.addObject("users", userService.findAll());
+		modelAndView.addObject("users", userService.findAllFriends());
 		modelAndView.addObject("mode", "MODE_ALL");
+			modelAndView.addObject("users", userService.findByUserId(getUser().getId()));
+			modelAndView.addObject("userid", getUser().getId());
 		modelAndView.addObject("auth", getUser());
 		modelAndView.addObject("control", getUser().getRole().getRole());
 		modelAndView.setViewName("user");
@@ -50,16 +49,13 @@ public class UserController {
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public ModelAndView saveUser(@Valid User user, BindingResult bindingResult) {
 		ModelAndView modelAndView = new ModelAndView("redirect:/users/all");
-		Role role = new Role();
-		user.setRole(role);
 		user.setPassword(userService.findUser(user.getId()).getPassword());
 		user.setActive(userService.findUser(user.getId()).getActive());
-		
+		user.setTelefone(user.getTelefone());
+		user.setUserid(getUser().getId());
 		modelAndView.addObject("auth", getUser());
 		modelAndView.addObject("control", getUser().getRole().getRole());
 		userService.save(user);
-		
-		
 		return modelAndView;
 	}
 
@@ -92,10 +88,3 @@ public class UserController {
 		return user;
 	}
 }
-
-
-
-
-
-
-

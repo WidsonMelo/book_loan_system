@@ -4,38 +4,61 @@ package com.mert.model;
  * Created by Yasin Mert on 25.02.2017.
  */
 import java.io.Serializable;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
-@Entity(name="task")
+@Entity(name = "task")
 public class Task implements Serializable {
 
-	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String name;
 	private String description;
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date dateCreated;
+
+	@Column(name = "dateCreated")
+	private String dateCreated;
+
+	@Column(name = "finished")
 	private boolean finished;
+
+	@Column(name = "userid")
+	private int userid;
+	
+	@Column(name = "emprestado")
+	private String emprestado;
+	
+	@Column(name = "editora")
+	private String editora;
+	
+	@Column(name = "edicao")
+	private String edicao;
+	
+	@Column(name = "isbn")
+	private String isbn;
+	
+	@Column(name = "assunto")
+	private String assunto;
+	
+	@Column(name = "idioma")
+	private String idioma;
+	
+	@Column(name = "anopublicacao")
+	private String anopublicacao;
 	
 	@OneToMany(mappedBy = "task")
 	private Set<UserTask> userTask = new HashSet<UserTask>();
-	
 
 	public int getId() {
 		return id;
@@ -61,11 +84,11 @@ public class Task implements Serializable {
 		this.description = description;
 	}
 
-	public Date getDateCreated() {
+	public String getDateCreated() {
 		return dateCreated;
 	}
 
-	public void setDateCreated(Date dateCreated) {
+	public void setDateCreated(String dateCreated) {
 		this.dateCreated = dateCreated;
 	}
 
@@ -77,7 +100,69 @@ public class Task implements Serializable {
 		this.finished = finished;
 	}
 
+	public int getUserid() {
+		return userid;
+	}
 
+	public void setUserid(int userid) {
+		this.userid = userid;
+	}
+
+	public String getEmprestado() {
+		return emprestado;
+	}
+
+	public void setEmprestado(String emprestado) {
+		this.emprestado = emprestado;
+	}
+
+	public String getEditora() {
+		return editora;
+	}
+
+	public void setEditora(String editora) {
+		this.editora = editora;
+	}
+
+	public String getEdicao() {
+		return edicao;
+	}
+
+	public void setEdicao(String edicao) {
+		this.edicao = edicao;
+	}
+
+	public String getIsbn() {
+		return isbn;
+	}
+
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
+	}
+
+	public String getAssunto() {
+		return assunto;
+	}
+
+	public void setAssunto(String assunto) {
+		this.assunto = assunto;
+	}
+
+	public String getIdioma() {
+		return idioma;
+	}
+
+	public void setIdioma(String idioma) {
+		this.idioma = idioma;
+	}
+
+	public String getAnopublicacao() {
+		return anopublicacao;
+	}
+
+	public void setAnopublicacao(String anopublicacao) {
+		this.anopublicacao = anopublicacao;
+	}
 
 	public Set<UserTask> getUserTask() {
 		return userTask;
@@ -86,5 +171,5 @@ public class Task implements Serializable {
 	public void setUserTask(Set<UserTask> userTask) {
 		this.userTask = userTask;
 	}
-	
+
 }

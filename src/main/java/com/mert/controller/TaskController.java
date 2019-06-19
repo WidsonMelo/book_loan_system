@@ -1,13 +1,10 @@
 package com.mert.controller;
 
-/**
- * Created by Yasin Mert on 25.02.2017.
- */
-
+import java.text.SimpleDateFormat;
 import java.util.Date;
+
 import javax.validation.Valid;
-import com.mert.model.User;
-import com.mert.service.UserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.mert.service.TaskService;
-import com.mert.service.UserTaskService;
 import com.mert.model.Task;
+import com.mert.model.User;
+import com.mert.service.TaskService;
+import com.mert.service.UserService;
+import com.mert.service.UserTaskService;
 
 @Controller
 @RequestMapping("/admin/tasks")
@@ -50,20 +49,34 @@ public class TaskController {
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public ModelAndView saveTask(@Valid Task task, BindingResult bindingResult) {
-		task.setDateCreated(new Date());
-		taskService.save(task);
+		if (task.getId() > 0) {
+			task.setDateCreated(task.getDateCreated());
+			task.setUserid(getUser().getId());
+			taskService.save(task);
+		} else {
+			Date hoje = new Date();
+			SimpleDateFormat df;
+			df = new SimpleDateFormat("dd/MM/yyyy");	
+			task.setEmprestado("Não");
+			task.setDateCreated(df.format(hoje).toString());
+			task.setUserid(getUser().getId());
+			taskService.save(task);
+		}
 		ModelAndView modelAndView = new ModelAndView("redirect:/admin/tasks/all");
 		modelAndView.addObject("auth", getUser());
-		modelAndView.addObject("control", getUser().getRole().getRole());
+		modelAndView.addObject("control", getUser().getRole().getRole());	
+		
 		return modelAndView;
 	}
 
 	@RequestMapping(value = "/all", method = RequestMethod.GET)
-	public ModelAndView allTasks() {
+	public ModelAndView allTasks() {		
+		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("rule", new Task());
 		//POINT=7 http://stackoverflow.com/questions/22364886/neither-bindingresult-nor-plain-target-object-for-bean-available-as-request-attr
-		modelAndView.addObject("tasks", taskService.findAll());
+		modelAndView.addObject("tasks", taskService.findByUserId(getUser().getId()));
+		modelAndView.addObject("userid", getUser().getId());
 		modelAndView.addObject("auth", getUser());
 		modelAndView.addObject("control", getUser().getRole().getRole());
 		modelAndView.addObject("mode", "MODE_ALL");
